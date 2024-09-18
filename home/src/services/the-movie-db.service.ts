@@ -26,4 +26,15 @@ export default class TheMovieDbService {
     );
     return await response.json();
   }
+
+  async getMovieDetails(id: string) {
+    const headers = this.getHeaders();
+    const response = await fetch(
+      `${this.url}/movie/${id}?language=${this.language}`,
+      {
+        headers,
+      }
+    );
+    return await response.json();
+  }
 }

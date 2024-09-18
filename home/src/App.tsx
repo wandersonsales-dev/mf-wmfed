@@ -4,6 +4,9 @@ import HomePage from "./pages/home.page";
 import MoviesProvider from "./contexts/movies/movies-provider";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
+// @ts-ignore
+import DetailsPage from "details/DetailsPage";
+
 import "./index.scss";
 
 const App = () => (
@@ -11,7 +14,7 @@ const App = () => (
     <Router>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/movie/:id" element={<div>Movie Details</div>} />
+        <Route path="/movie/:id" element={<DetailsPage />} />
       </Routes>
     </Router>
   </MoviesProvider>

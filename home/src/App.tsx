@@ -2,12 +2,18 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import HomePage from "./pages/home.page";
 import MoviesProvider from "./contexts/movies/movies-provider";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
 import "./index.scss";
 
 const App = () => (
   <MoviesProvider>
-    <HomePage />
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/movie/:id" element={<div>Movie Details</div>} />
+      </Routes>
+    </Router>
   </MoviesProvider>
 );
 const rootElement = document.getElementById("app");

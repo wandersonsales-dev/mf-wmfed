@@ -37,4 +37,49 @@ export default class TheMovieDbService {
     );
     return await response.json();
   }
+
+  async getFavoriteMovies() {
+    const headers = this.getHeaders();
+    const response = await fetch(
+      `${this.url}/account/${process.env.REACT_APP_THE_MOVIE_DB_ACCOUNT_ID}/favorite/movies`,
+      {
+        headers,
+      }
+    );
+    return await response.json();
+  }
+
+  async addToFavorites(media_id: number) {
+    const headers = this.getHeaders();
+    const response = await fetch(
+      `${this.url}/account/${process.env.REACT_APP_THE_MOVIE_DB_ACCOUNT_ID}/favorite`,
+      {
+        method: "POST",
+        headers,
+        body: JSON.stringify({
+          media_type: "movie",
+          media_id,
+          favorite: true,
+        }),
+      }
+    );
+    return await response.json();
+  }
+
+  async removeFromFavorites(media_id: number) {
+    const headers = this.getHeaders();
+    const response = await fetch(
+      `${this.url}/account/${process.env.REACT_APP_THE_MOVIE_DB_ACCOUNT_ID}/favorite`,
+      {
+        method: "POST",
+        headers,
+        body: JSON.stringify({
+          media_type: "movie",
+          media_id,
+          favorite: false,
+        }),
+      }
+    );
+    return await response.json();
+  }
 }

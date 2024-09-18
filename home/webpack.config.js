@@ -69,6 +69,7 @@ module.exports = (_, argv) => ({
       },
       exposes: {
         "./TheMovieDbService": "./src/services/the-movie-db.service.ts",
+        "./IMovie": "./src/interfaces/movies.interface.ts",
       },
       shared: {
         ...deps,

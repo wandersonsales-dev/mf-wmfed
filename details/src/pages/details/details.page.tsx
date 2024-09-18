@@ -1,8 +1,8 @@
 import React, { useEffect, useMemo, useState } from "react";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
-import Tag from "../../components/tag/tag.component";
 import Tags from "../../components/tags/tags.component";
+import ButtonFavorites from "../../components/button-favorites/button-favorites.component";
 
 // @ts-ignore
 import TheMovieDbService from "home/TheMovieDbService";
@@ -12,6 +12,8 @@ export default () => {
 
   const theMovieDbService = useMemo(() => new TheMovieDbService(), []);
   const [movie, setMovie] = useState<any>(null);
+  const [isFavoriteLoading, setIsFavoriteLoading] = useState(true);
+  const [isFavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
     const getMovieDetails = async () => {
@@ -20,6 +22,19 @@ export default () => {
     };
 
     getMovieDetails();
+  }, []);
+
+  useEffect(() => {
+    const checkIsFavorite = async () => {
+      const response = await theMovieDbService.getFavoriteMovies(movie?.title);
+      const isFavoriteMovie = response?.results?.find(
+        (favorite: any) => Number(favorite.id) === Number(id)
+      );
+      setIsFavorite(!!isFavoriteMovie);
+      setIsFavoriteLoading(false);
+    };
+
+    checkIsFavorite();
   }, []);
 
   const Container = styled.div`
@@ -42,6 +57,15 @@ export default () => {
       <div className="details">
         <h1>{movie?.title}</h1>
         <p>{movie?.overview}</p>
+        {isFavoriteLoading ? (
+          <p>Carregando...</p>
+        ) : (
+          <ButtonFavorites
+            isFavorite={isFavorite}
+            onChangeFavorite={(value: boolean) => setIsFavorite(value)}
+            movie={movie}
+          />
+        )}
         <Tags tags={movie?.genres} />
       </div>
     </Container>

@@ -14,10 +14,9 @@ import {
 } from "./search.component.styles";
 import TheMovieDbService from "../../services/the-movie-db.service";
 import MoviesContext from "../../contexts/movies/movies-context";
-import MovieList from "../movie-list/movie-list.component";
 
 export default () => {
-  const { movieList, setMovieList } = useContext(MoviesContext);
+  const { setMovieList } = useContext(MoviesContext);
   const theMovieDbService = useMemo(() => new TheMovieDbService(), []);
 
   const [search, setSearch] = useState("");
@@ -30,7 +29,6 @@ export default () => {
     async (event: FormEvent<HTMLFormElement>) => {
       event.preventDefault();
       const searchResults = await theMovieDbService.searchMovie(search);
-      console.log(searchResults);
 
       setMovieList(searchResults?.results);
     },

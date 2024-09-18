@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-
-import "./index.scss";
 import HomePage from "./pages/home.page";
 import MoviesProvider from "./contexts/movies/movies-provider";
+
+import "./index.scss";
 
 const App = () => (
   <MoviesProvider>

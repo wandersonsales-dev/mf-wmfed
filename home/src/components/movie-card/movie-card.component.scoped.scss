@@ -1,0 +1,40 @@
+.movie-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 200px;
+  gap: 0.5rem;
+  border: 1px solid #353535;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: transparent;
+  color: #fff;
+  text-align: left;
+  padding: 1rem;
+  overflow: hidden;
+
+  &:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    border: 1px solid #ff0000;
+    cursor: pointer;
+  }
+
+  img {
+    position: relative;
+    width: calc(100% + 2rem);
+    top: -1rem;
+    left: -1rem;
+    height: 150px;
+    object-fit: cover;
+  }
+
+  p {
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 5;
+    line-clamp: 5;
+    -webkit-box-orient: vertical;
+  }
+}

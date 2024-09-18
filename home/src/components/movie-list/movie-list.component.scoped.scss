@@ -1,0 +1,8 @@
+.movie-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-top: 20px;
+  max-height: 90%;
+  gap: 1rem;
+}

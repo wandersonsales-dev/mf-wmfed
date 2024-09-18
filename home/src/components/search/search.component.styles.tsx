@@ -4,9 +4,9 @@ const FormContainer = styled.form`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
   background-color: #1b0000;
   color: #fff;
+  height: 10%;
 `;
 
 const SearchInput = styled.input`

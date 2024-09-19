@@ -19,16 +19,20 @@ export default () => {
   const theMovieDbService = useMemo(() => new TheMovieDbService(), []);
 
   const handleChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
-    setSearch(event.target.value);
+    if (setSearch) {
+      setSearch(event.target.value);
+    }
   }, []);
 
   const handleSubmit = useCallback(
     async (event: FormEvent<HTMLFormElement>) => {
       event.preventDefault();
       const searchResults = await theMovieDbService.searchMovie({
-        query: search,
+        query: search ?? "",
       });
-      setMovieList(searchResults);
+      if (setMovieList) {
+        setMovieList(searchResults);
+      }
     },
     [search]
   );

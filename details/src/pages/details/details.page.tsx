@@ -6,12 +6,14 @@ import ButtonFavorites from "../../components/button-favorites/button-favorites.
 
 // @ts-ignore
 import TheMovieDbService from "home/TheMovieDbService";
+// @ts-ignore
+import { Movie } from "home/IMovie";
 
 export default () => {
   const { id } = useParams();
 
   const theMovieDbService = useMemo(() => new TheMovieDbService(), []);
-  const [movie, setMovie] = useState<any>(null);
+  const [movie, setMovie] = useState<Movie | null>(null);
   const [isFavoriteLoading, setIsFavoriteLoading] = useState(true);
   const [isFavorite, setIsFavorite] = useState(false);
 
@@ -28,7 +30,7 @@ export default () => {
     const checkIsFavorite = async () => {
       const response = await theMovieDbService.getFavoriteMovies(movie?.title);
       const isFavoriteMovie = response?.results?.find(
-        (favorite: any) => Number(favorite.id) === Number(id)
+        (movie: Movie) => Number(movie.id) === Number(id)
       );
       setIsFavorite(!!isFavoriteMovie);
       setIsFavoriteLoading(false);

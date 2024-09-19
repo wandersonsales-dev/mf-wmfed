@@ -30,30 +30,26 @@ export default ({ movie, isFavorite, onChangeFavorite }: Props) => {
     cursor: pointer;
   `;
 
-  const removeFromFavorites = async (e: any) => {
-    e.preventDefault();
-
+  const removeFromFavorites = async () => {
     await theMovieDbService.removeFromFavorites(movie?.id);
     onChangeFavorite(false);
   };
 
-  const addToFavorites = async (e: any) => {
-    e.preventDefault();
-
+  const addToFavorites = async () => {
     await theMovieDbService.addToFavorites(movie?.id);
     onChangeFavorite(true);
   };
 
   if (isFavorite) {
     return (
-      <RemoveFromFavoritesButton onClick={removeFromFavorites}>
+      <RemoveFromFavoritesButton onClick={() => removeFromFavorites()}>
         Remover dos favoritos
       </RemoveFromFavoritesButton>
     );
   }
 
   return (
-    <AddToFavoritesButton onClick={addToFavorites}>
+    <AddToFavoritesButton onClick={() => addToFavorites()}>
       Adicionar aos favoritos
     </AddToFavoritesButton>
   );

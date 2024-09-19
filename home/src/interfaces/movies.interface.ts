@@ -1,10 +1,10 @@
 import { Dispatch, SetStateAction } from "react";
 
 export interface MovieContext {
-  movieList: MovieList;
-  setMovieList: Dispatch<SetStateAction<any[]>>;
-  search: string;
-  setSearch: Dispatch<SetStateAction<string>>;
+  movieList?: MovieList;
+  setMovieList?: Dispatch<SetStateAction<MovieList[]>>;
+  search?: string;
+  setSearch?: Dispatch<SetStateAction<string>>;
 }
 
 export interface MovieList {

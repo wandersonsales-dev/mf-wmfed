@@ -1,3 +1,4 @@
 import { createContext } from "react";
-const MoviesContext = createContext<any>({});
+import { MovieContext } from "../../interfaces/movies.interface";
+const MoviesContext = createContext<MovieContext>({});
 export default MoviesContext;

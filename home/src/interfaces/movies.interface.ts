@@ -1,8 +1,17 @@
 import { Dispatch, SetStateAction } from "react";
 
 export interface MovieContext {
-  movieList: Movie[];
-  setMovieList: Dispatch<SetStateAction<never[]>>;
+  movieList: MovieList;
+  setMovieList: Dispatch<SetStateAction<any[]>>;
+  search: string;
+  setSearch: Dispatch<SetStateAction<string>>;
+}
+
+export interface MovieList {
+  page: number;
+  results: Movie[];
+  total_pages: number;
+  total_results: number;
 }
 
 export interface Movie {

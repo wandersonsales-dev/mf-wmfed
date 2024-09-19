@@ -4,7 +4,6 @@ import React, {
   useCallback,
   useContext,
   useMemo,
-  useState,
 } from "react";
 
 import {
@@ -16,10 +15,8 @@ import TheMovieDbService from "../../services/the-movie-db.service";
 import MoviesContext from "../../contexts/movies/movies-context";
 
 export default () => {
-  const { setMovieList } = useContext(MoviesContext);
+  const { setMovieList, search, setSearch } = useContext(MoviesContext);
   const theMovieDbService = useMemo(() => new TheMovieDbService(), []);
-
-  const [search, setSearch] = useState("");
 
   const handleChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     setSearch(event.target.value);
@@ -28,9 +25,10 @@ export default () => {
   const handleSubmit = useCallback(
     async (event: FormEvent<HTMLFormElement>) => {
       event.preventDefault();
-      const searchResults = await theMovieDbService.searchMovie(search);
-
-      setMovieList(searchResults?.results);
+      const searchResults = await theMovieDbService.searchMovie({
+        query: search,
+      });
+      setMovieList(searchResults);
     },
     [search]
   );
@@ -39,10 +37,10 @@ export default () => {
     <FormContainer onSubmit={handleSubmit}>
       <SearchInput
         type="text"
-        placeholder="Search..."
+        placeholder="Buscar..."
         onChange={handleChange}
       />
-      <SearchButton type="submit">Search</SearchButton>
+      <SearchButton type="submit">Buscar</SearchButton>
     </FormContainer>
   );
 };

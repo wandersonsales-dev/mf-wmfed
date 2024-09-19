@@ -1,15 +1,18 @@
 import React, { PropsWithChildren, useState } from "react";
 import MoviesContext from "./movies-context";
-import { MovieContext } from "../../interfaces/movies.interface";
+import { MovieContext, MovieList } from "../../interfaces/movies.interface";
 
 interface Props extends PropsWithChildren {}
 
 export default ({ children }: Props) => {
-  const [movieList, setMovieList] = useState([]);
+  const [movieList, setMovieList] = useState<any>({});
+  const [search, setSearch] = useState("");
 
   const value: MovieContext = {
     movieList,
     setMovieList,
+    search,
+    setSearch,
   };
 
   return (

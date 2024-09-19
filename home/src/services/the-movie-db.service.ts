@@ -16,10 +16,10 @@ export default class TheMovieDbService {
     };
   }
 
-  async searchMovie(query: string) {
+  async searchMovie({ query, page = 1 }: { query: string; page?: number }) {
     const headers = this.getHeaders();
     const response = await fetch(
-      `${this.url}/search/movie?query=${query}&language=${this.language}`,
+      `${this.url}/search/movie?query=${query}&language=${this.language}&page=${page}`,
       {
         headers,
       }

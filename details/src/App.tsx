@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import DetailsPage from "./pages/details/details.page";
 
 import "./index.css";
-import DetailsPage from "./pages/details/details.page";
 
 const App = () => <DetailsPage />;
 const rootElement = document.getElementById("app");

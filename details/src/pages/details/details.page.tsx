@@ -52,10 +52,10 @@ export default () => {
 
   return (
     <Container>
-      <img
+      {movie?.poster_path ? <img
         src={`${process.env.REACT_APP_THE_MOVIE_DB_IMAGE_URL}${movie?.poster_path}`}
         alt="Movie"
-      />
+      /> : null}
       <div className="details">
         <h1>{movie?.title}</h1>
         <p>{movie?.overview}</p>

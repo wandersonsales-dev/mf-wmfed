@@ -17,12 +17,12 @@ export default ({ movie }: Props) => {
 
   return (
     <button key={movie?.id} className="movie-card" onClick={handleClick}>
-      <img
+      {movie?.poster_path ? <img
         src={`${process.env.REACT_APP_THE_MOVIE_DB_IMAGE_URL}${movie?.poster_path}`}
         alt={movie?.title}
         width={30}
         height={30}
-      />
+      /> : null}
       <h3>{movie?.title}</h3>
       <p>{movie?.overview}</p>
     </button>
